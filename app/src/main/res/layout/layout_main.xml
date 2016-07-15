@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <Button
+        android:id="@+id/main_local_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:background="@android:color/white"
+        android:text="本地资源" />
+
+    <Button
+        android:id="@+id/main_souhu_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:background="@android:color/white"
+        android:text="搜狐直播" />
+</LinearLayout>
