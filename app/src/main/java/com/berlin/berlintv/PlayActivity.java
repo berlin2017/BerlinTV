@@ -47,6 +47,8 @@ public class PlayActivity extends AppCompatActivity {
      */
     private float mBrightness = -1f;
     private ProgressBar progressBar;
+    ImageView back;
+    MediaController mc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class PlayActivity extends AppCompatActivity {
         Vitamio.isInitialized(this);
         setContentView(R.layout.layout_play);
         videoView = (VideoView) findViewById(R.id.videoview);
-        MediaController mc = new MediaController(this);
+        mc = new MediaController(this);
         videoView.setMediaController(mc);
         videoView.setVideoPath(url);
         videoView.requestFocus();
@@ -83,13 +85,8 @@ public class PlayActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.play_loading_progress);
         videoView.setMediaBufferingIndicator(progressBar);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            full(true);
-        } else {
-            full(false);
-        }
 
-        ImageView back = (ImageView) findViewById(R.id.play_back_img);
+        back = (ImageView) findViewById(R.id.play_back_img);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +98,11 @@ public class PlayActivity extends AppCompatActivity {
                 }
             }
         });
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            full(true);
+        } else {
+            full(false);
+        }
     }
 
     @Override
@@ -151,17 +153,22 @@ public class PlayActivity extends AppCompatActivity {
 
     private void full(boolean enable) {
         if (enable) {
+            back.setVisibility(View.VISIBLE);
+            mc.setVisibility(View.VISIBLE);
             mLayout = VideoView.VIDEO_LAYOUT_STRETCH;
             WindowManager.LayoutParams lp = getWindow().getAttributes();
             lp.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
             getWindow().setAttributes(lp);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         } else {
+            back.setVisibility(View.GONE);
+            mc.setVisibility(View.GONE);
             mLayout = VideoView.VIDEO_LAYOUT_SCALE;
             WindowManager.LayoutParams attr = getWindow().getAttributes();
             attr.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
             getWindow().setAttributes(attr);
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
         }
         videoView.setVideoLayout(mLayout,0);
     }

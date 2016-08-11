@@ -22,6 +22,7 @@
             />
         <activity android:name=".LocalActivity"/>
         <activity android:name=".SouHuListActivity"/>
+        <activity android:name=".ZhanQiListActivity"/>
     </application>
 
 </manifest>

@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         local_btn.setOnClickListener(this);
         Button souhu_btn = (Button) findViewById(R.id.main_souhu_btn);
         souhu_btn.setOnClickListener(this);
+        Button zhanqi_btn = (Button) findViewById(R.id.main_zhanqi_btn);
+        zhanqi_btn.setOnClickListener(this);
     }
 
     @Override
@@ -31,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_souhu_btn:
                 intent = new Intent(this,SouHuListActivity.class);
+                break;
+            case R.id.main_zhanqi_btn:
+                intent = new Intent(this,ZhanQiListActivity.class);
                 break;
         }
         startActivity(intent);
